@@ -117,6 +117,12 @@ class Selection extends EnteringSelection {
       attrNull(name);
       return;
     }
+    
+    if(value is objectFunction) {
+      attrFunc(name, value);
+      return;
+    }
+
     final qualified = core.qualify(name);
     if (qualified.space != null) {
       each((node, d, i, j) {
@@ -388,6 +394,10 @@ class Selection extends EnteringSelection {
       styleNull(name);
       return;
     }
+    if(value is objectFunction) {
+      styleFunc(name, value, priority);
+      return;
+    }
     each((node, d, i, j) {
       node.style.setProperty(name, value.toString(), priority);
     });
@@ -446,6 +456,11 @@ class Selection extends EnteringSelection {
       textNull();
       return;
     }
+    if(value is objectFunction) {
+      textFunc(value);
+      return;
+    }
+
     each((node, data, i, j) {
       node.text = value.toString();
     });

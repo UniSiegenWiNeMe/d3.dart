@@ -117,7 +117,7 @@ class Selection extends EnteringSelection {
       attrNull(name);
       return;
     }
-    
+    // check if value is a callback function that needs all information
     if(value is objectFunction) {
       attrFunc(name, value);
       return;
